@@ -150,11 +150,11 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
     ############################################################
     # Set download url---------------------------------------------------------
     url <- paste0('http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/',
-                  ifelse(stringr::str_detect(input_filename, '10m'),
-                         yes = '10m',
+                  ifelse(stringr::str_detect(input_filename, '110m'),
+                         yes = '110m',
                          no = ifelse(stringr::str_detect(input_filename, '50m'),
                                      yes = '50m',
-                                     no = '110m')),
+                                     no = '10m')),
                   '/',
                   ifelse(stringr::str_detect(input_filename, 'admin') |
                              stringr::str_detect(input_filename, 'airports') |
