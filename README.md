@@ -12,3 +12,9 @@ ne2geojson
 [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--17-yellowgreen.svg)](/commits/master)
 
 GeoJSON is an open standard format that is handy for representing geographic data structures in text-based JSON files. The only function (ne2geojson) in this package streamlines the process of downloading a Natural Earth shapefile (<http://www.naturalearthdata.com>) and converting it to GeoJSON format.
+
+## Installation
+
+```
+devtools::install_github("kamermanpr/ne2geojson")
+```
