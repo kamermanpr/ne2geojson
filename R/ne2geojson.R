@@ -81,31 +81,31 @@
 #'   \strong{PHYSICAL MAPS}
 #'
 #'   \strong{Coastline}
-#'   \item ne_XXm_coastline [10m, ]
+#'   \item ne_XXm_coastline [10m]
 #'
 #'   \strong{Land}
-#'   \item ne_XXm_land [10m, ]
-#'   \item ne_XXm_land_scale_rank [10m, ]
+#'   \item ne_XXm_land [10m]
+#'   \item ne_XXm_land_scale_rank [10m]
 #'
 #'   \strong{Minor islands and reefs}
-#'   \item ne_XXm_minor_islands [10m, ]
-#'   \item ne_XXm_minor_islands_coastline [10m, ]
-#'   \item nn_XXm_reefs [10m, ]
+#'   \item ne_XXm_minor_islands [10m]
+#'   \item ne_XXm_minor_islands_coastline [10m]
+#'   \item nn_XXm_reefs [10m]
 #'
 #'   \strong{Oceans}
-#'   \item ne_XXm_ocean [10m, ]
-#'   \item ne_XXm_ocean_scale_rank [10m, ]
+#'   \item ne_XXm_ocean [10m]
+#'   \item ne_XXm_ocean_scale_rank [10m]
 #'
 #'   \strong{Rivers, lake centerlines, lakes, and resevoirs}
-#'   \item ne_XXm_rivers_lake_centerlines [10m, ]
-#'   \item ne_XXm_rivers_lake_centerline_scale_rank [10m, ]
-#'   \item ne_XXm_rivers_north_america [10m, ]
-#'   \item ne_XXm_rivers_europe [10m, ]
-#'   \item ne_XXm_lakes [10m, ]
-#'   \item ne_XXm_lakes_historic [10m, ]
-#'   \item ne_XXm_lakes_pluvial [10m, ]
-#'   \item ne_XXm_lakes_north_america [10m,]
-#'   \item ne_XXm_lakes_europe [10m,]
+#'   \item ne_XXm_rivers_lake_centerlines [10m]
+#'   \item ne_XXm_rivers_lake_centerline_scale_rank [10m]
+#'   \item ne_XXm_rivers_north_america [10m]
+#'   \item ne_XXm_rivers_europe [10m]
+#'   \item ne_XXm_lakes [10m]
+#'   \item ne_XXm_lakes_historic [10m]
+#'   \item ne_XXm_lakes_pluvial [10m]
+#'   \item ne_XXm_lakes_north_america [10m]
+#'   \item ne_XXm_lakes_europe [10m]
 #'
 #' }
 #'
