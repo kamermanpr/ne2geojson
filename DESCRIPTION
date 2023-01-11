@@ -1,7 +1,7 @@
 Package: ne2geojson
 Type: Package
 Title: Download and convert Natural Earth shapefiles to GeoJSON
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Peter", "Kamerman", email = "peter.kamerman@gmail.com", role = c("aut", "cre"))
 URL: https://github.com/kamermanpr/ne2geojson
 BugReports: https://github.com/kamermanpr/ne2geojson/issues
@@ -11,5 +11,3 @@ Encoding: UTF-8
 RoxygenNote: 7.2.3
 Depends: R (>= 3.3.0)
 Imports: geojsonio, rmapshaper, sf, stringr
-Suggests: knitr, rmarkdown
-VignetteBuilder: knitr
