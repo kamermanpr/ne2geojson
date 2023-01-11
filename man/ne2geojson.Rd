@@ -2,13 +2,18 @@
 % Please edit documentation in R/ne2geojson.R
 \name{ne2geojson}
 \alias{ne2geojson}
-\title{Convert Natural Earth shapefiles to geoJSON.}
+\title{Convert Natural Earth shapefiles to GeoJSON.}
 \usage{
-ne2geojson(input_filename = "ne_50m_admin_0_countries", local = FALSE,
-  local_path = ".", output_dir = ".", output_filename = NULL,
-  crs = "+init=epsg:4326 +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0",
-  box_long = c(-180, 180), box_lat = c(-90, 90), simplify = FALSE,
-  retain = 0.1, topology = TRUE)
+ne2geojson(
+  input_filename = "ne_50m_admin_0_countries",
+  local = FALSE,
+  local_path = ".",
+  output_dir = ".",
+  output_filename = NULL,
+  crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0",
+  simplify = FALSE,
+  retain = 0.1
+)
 }
 \arguments{
 \item{input_filename}{Character string specifying the map layer. Default value is \emph{'ne_50m_admin_0_countries'}. Do not add the file extension; import assumes that the input file is in '.zip' format. For a full list of available maps, please see \emph{Details}.}
@@ -17,27 +22,18 @@ ne2geojson(input_filename = "ne_50m_admin_0_countries", local = FALSE,
 
 \item{local_path}{Character string specifying the path to the local file specified under \emph{local}. Default value is the current working directory.}
 
-\item{output_dir}{Character string specifying the path (no trailing '/') to the output directory where the geoJSON will be saved. Default value is the current working directory.}
+\item{output_dir}{Character string specifying the path (no trailing '/') to the output directory where the GeoJSON will be saved. Default value is the current working directory.}
 
 \item{output_filename}{Character string specifying the filename of the output file (no file extension is required). Default value is \emph{NULL}, and the file will be given the name of the input file.}
 
-\item{crs}{Character string specifying the coordinate reference system to use. The default value is \emph{'+init=epsg:4326 +proj=longlat +ellp=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0'}.}
+\item{crs}{Character string specifying the coordinate reference system to use. The default value is \emph{'+proj=longlat +ellp=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0'}.}
 
-\item{box_long}{Longitudinal scope of the bounding box. Default range is \emph{-180} to \emph{180} degrees.}
+\item{simplify}{Logical specifying whether to simplify the given geometry. Default value is \emph{FALSE}.}
 
-\item{box_lat}{Latitudinal scope of the bounding box. Default range
-is \emph{-90} to \emph{90} degrees.}
-
-\item{simplify}{Logical specifying whether to simplify the given geometry using the Douglas-Peuker algorithm. Default value is \emph{FALSE}.}
-
-\item{retain}{Numerical value between 0 and 1 giving the proportion of values to retain when simplifying. Simplification is done through the Douglas-Peuker algorithm, and smaller \emph{tolerance} values produce greater simplification. Default value is \emph{0.1}.}
-
-\item{topology}{Logical specifying whether the Douglas-Peuker algorithm
-should attempt to preserve the topology of the original geometry. Default
-value is \emph{TRUE}.}
+\item{retain}{Numerical value between 0 and 1. Smaller values produce greater simplification. Default value is \emph{0.1}.}
 }
 \description{
-A convenience wrapper building on functions \code{\link[rgdal]{readOGR}}, \code{\link[sp]{spTransform}}, \code{\link[rgeos]{gSimplify}}, \code{\link[geojsonio]{geojson_json}}, \code{\link[geojsonio]{geojson_write}} to import and convert shapefiles from \href{http://www.naturalearthdata.com/downloads/}{Natural Earth} to geoJSON format.
+A convenience wrapper building on functions \code{\link[rgdal]{readOGR}}, \code{\link[sp]{spTransform}}, \code{\link[rgeos]{gSimplify}}, \code{\link[geojsonio]{geojson_json}}, \code{\link[geojsonio]{geojson_write}} to import and convert shapefiles from \href{http://www.naturalearthdata.com/downloads/}{Natural Earth} to GeoJSON format.
 }
 \details{
 A full list of available maps is provided below. \emph{XX} specifies the scale, and must be substituted with 10 (1:10m), 50 (1:50m) or 110 (1:110m). The values in square parentheses indicate the scale(s) a map is available in.
@@ -103,43 +99,43 @@ A full list of available maps is provided below. \emph{XX} specifies the scale, 
   \strong{PHYSICAL MAPS}
 
   \strong{Coastline}
-  \item ne_XXm_coastline [10m, ]
+  \item ne_XXm_coastline [10m]
 
   \strong{Land}
-  \item ne_XXm_land [10m, ]
-  \item ne_XXm_land_scale_rank [10m, ]
+  \item ne_XXm_land [10m]
+  \item ne_XXm_land_scale_rank [10m]
 
   \strong{Minor islands and reefs}
-  \item ne_XXm_minor_islands [10m, ]
-  \item ne_XXm_minor_islands_coastline [10m, ]
-  \item nn_XXm_reefs [10m, ]
+  \item ne_XXm_minor_islands [10m]
+  \item ne_XXm_minor_islands_coastline [10m]
+  \item nn_XXm_reefs [10m]
 
   \strong{Oceans}
-  \item ne_XXm_ocean [10m, ]
-  \item ne_XXm_ocean_scale_rank [10m, ]
+  \item ne_XXm_ocean [10m]
+  \item ne_XXm_ocean_scale_rank [10m]
 
   \strong{Rivers, lake centerlines, lakes, and resevoirs}
-  \item ne_XXm_rivers_lake_centerlines [10m, ]
-  \item ne_XXm_rivers_lake_centerline_scale_rank [10m, ]
-  \item ne_XXm_rivers_north_america [10m, ]
-  \item ne_XXm_rivers_europe [10m, ]
-  \item ne_XXm_lakes [10m, ]
-  \item ne_XXm_lakes_historic [10m, ]
-  \item ne_XXm_lakes_pluvial [10m, ]
-  \item ne_XXm_lakes_north_america [10m,]
-  \item ne_XXm_lakes_europe [10m,]
+  \item ne_XXm_rivers_lake_centerlines [10m]
+  \item ne_XXm_rivers_lake_centerline_scale_rank [10m]
+  \item ne_XXm_rivers_north_america [10m]
+  \item ne_XXm_rivers_europe [10m]
+  \item ne_XXm_lakes [10m]
+  \item ne_XXm_lakes_historic [10m]
+  \item ne_XXm_lakes_pluvial [10m]
+  \item ne_XXm_lakes_north_america [10m]
+  \item ne_XXm_lakes_europe [10m]
 
 }
 }
 \examples{
 \dontrun{
-# Create 110m scale country-level geoJSON in current working directory
+# Create 110m scale country-level GeoJSON in current working directory
 ne2geojson(input_filename = 'ne_110m_admin_0_countries')
 
-# Create 110m scale country-level geoJSON in new directory
+# Create 110m scale country-level GeoJSON in new directory
 ne2geojson(input_filename = 'ne_110m_admin_0_countries', output_dir = './country'
 
-# Create simplified 110m scale country-level geoJSON, retaining 50\% of points
+# Create simplified 110m scale country-level GeoJSON, retaining 50\% of points
 ne2geojson(input_filename = 'ne_110m_admin_0_countries', simplify = TRUE, retain = 0.5)
 }
 

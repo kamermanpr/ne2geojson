@@ -8,7 +8,7 @@ BugReports: https://github.com/kamermanpr/ne2geojson/issues
 Description: GeoJSON is an open standard format that is handy for representing geographic data structures in text-based JSON files. The only function (ne2geojson) in this package streamlines the process of downloading a Natural Earth shapefile (http://www.naturalearthdata.com) and converting it to GeoJSON format.
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 6.0.1
+RoxygenNote: 7.2.3
 Depends: R (>= 3.3.0)
 Imports: geojsonio, rmapshaper, sf, stringr
 Suggests: knitr, rmarkdown
