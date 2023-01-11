@@ -1,6 +1,6 @@
 Package: ne2geojson
 Type: Package
-Title: Download and convert Natural Earth shapefiles to GeoJSON.
+Title: Download and convert Natural Earth shapefiles to GeoJSON
 Version: 0.1.0
 Authors@R: person("Peter", "Kamerman", email = "peter.kamerman@gmail.com", role = c("aut", "cre"))
 URL: https://github.com/kamermanpr/ne2geojson
@@ -10,6 +10,6 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 6.0.1
 Depends: R (>= 3.3.0)
-Imports: geojsonio, rgdal, rmapshaper, sp, stringr
+Imports: geojsonio, raster, rgdal, rmapshaper, sp, stringr
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
