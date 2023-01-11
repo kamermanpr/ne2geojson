@@ -11,4 +11,4 @@ ne2geojson
 
 [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--17-yellowgreen.svg)](/commits/master)
 
-Geojson is an open standard format that is handy for representing geographic data structures on the open web. Services such as GitHub, the Twitter API, and Leaflet have embraced the format. The main function (ne2geojson) in this package streamlines the process of downloading a Natural Earth shapefile (<http://www.naturalearthdata.com>) and converting it to geoJSON format. It also provides a helper function (usa\_compactor) to create a GeoJSON of the contiguous states of the USA with an inset of Alaska and/or Hawaii.
+GeoJSON is an open standard format that is handy for representing geographic data structures in text-based JSON files. The only function (ne2geojson) in this package streamlines the process of downloading a Natural Earth shapefile (<http://www.naturalearthdata.com>) and converting it to GeoJSON format.

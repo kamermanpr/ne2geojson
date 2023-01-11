@@ -1,6 +1,6 @@
-#' Convert Natural Earth shapefiles to geoJSON.
+#' Convert Natural Earth shapefiles to GeoJSON.
 #'
-#' A convenience wrapper building on functions \code{\link[rgdal]{readOGR}}, \code{\link[sp]{spTransform}}, \code{\link[rgeos]{gSimplify}}, \code{\link[geojsonio]{geojson_json}}, \code{\link[geojsonio]{geojson_write}} to import and convert shapefiles from \href{http://www.naturalearthdata.com/downloads/}{Natural Earth} to geoJSON format.
+#' A convenience wrapper building on functions \code{\link[rgdal]{readOGR}}, \code{\link[sp]{spTransform}}, \code{\link[rgeos]{gSimplify}}, \code{\link[geojsonio]{geojson_json}}, \code{\link[geojsonio]{geojson_write}} to import and convert shapefiles from \href{http://www.naturalearthdata.com/downloads/}{Natural Earth} to GeoJSON format.
 #'
 #' @param input_filename Character string specifying the map layer. Default value is \emph{'ne_50m_admin_0_countries'}. Do not add the file extension; import assumes that the input file is in '.zip' format. For a full list of available maps, please see \emph{Details}.
 #'
@@ -8,7 +8,7 @@
 #'
 #' @param local_path Character string specifying the path to the local file specified under \emph{local}. Default value is the current working directory.
 #'
-#' @param output_dir Character string specifying the path (no trailing '/') to the output directory where the geoJSON will be saved. Default value is the current working directory.
+#' @param output_dir Character string specifying the path (no trailing '/') to the output directory where the GeoJSON will be saved. Default value is the current working directory.
 #'
 #' @param output_filename Character string specifying the filename of the output file (no file extension is required). Default value is \emph{NULL}, and the file will be given the name of the input file.
 #'
@@ -120,13 +120,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Create 110m scale country-level geoJSON in current working directory
+#' # Create 110m scale country-level GeoJSON in current working directory
 #' ne2geojson(input_filename = 'ne_110m_admin_0_countries')
 #'
-#' # Create 110m scale country-level geoJSON in new directory
+#' # Create 110m scale country-level GeoJSON in new directory
 #' ne2geojson(input_filename = 'ne_110m_admin_0_countries', output_dir = './country'
 #'
-#' # Create simplified 110m scale country-level geoJSON, retaining 50% of points
+#' # Create simplified 110m scale country-level GeoJSON, retaining 50% of points
 #' ne2geojson(input_filename = 'ne_110m_admin_0_countries', simplify = TRUE, retain = 0.5)
 #' }
 #'
@@ -194,7 +194,7 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
         dir.create(output_dir)
     }
 
-    ## Add geoJSON extension to file_name--------------------------------------
+    ## Add GeoJSON extension to file_name--------------------------------------
     file_name_2 <- paste0(output_dir,
                           '/',
                           file_name,
@@ -226,7 +226,7 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
     # Transform to SpatialPolygonsDataFrame-------------------------------
     shape_3 <- geojsonio::geojson_json(shape_2)
 
-    # Transform to geoJSON and write to file------------------------------
+    # Transform to GeoJSON and write to file------------------------------
     geojsonio::geojson_write(input = shape_3,
                              file = file_name_2)
 }
