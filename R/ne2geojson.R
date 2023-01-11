@@ -12,20 +12,11 @@
 #'
 #' @param output_filename Character string specifying the filename of the output file (no file extension is required). Default value is \emph{NULL}, and the file will be given the name of the input file.
 #'
-#' @param crs Character string specifying the coordinate reference system to use. The default value is \emph{'+init=epsg:4326 +proj=longlat +ellp=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0'}.
+#' @param crs Character string specifying the coordinate reference system to use. The default value is \emph{'+proj=longlat +ellp=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0'}.
 #'
-#' @param box_long Longitudinal scope of the bounding box. Default range is \emph{-180} to \emph{180} degrees.
+#' @param simplify Logical specifying whether to simplify the given geometry. Default value is \emph{FALSE}.
 #'
-#' @param box_lat Latitudinal scope of the bounding box. Default range
-#' is \emph{-90} to \emph{90} degrees.
-#'
-#' @param simplify Logical specifying whether to simplify the given geometry using the Douglas-Peuker algorithm. Default value is \emph{FALSE}.
-#'
-#' @param retain Numerical value between 0 and 1 giving the proportion of values to retain when simplifying. Simplification is done through the Douglas-Peuker algorithm, and smaller \emph{tolerance} values produce greater simplification. Default value is \emph{0.1}.
-#'
-#' @param topology Logical specifying whether the Douglas-Peuker algorithm
-#' should attempt to preserve the topology of the original geometry. Default
-#' value is \emph{TRUE}.
+#' @param retain Numerical value between 0 and 1. Smaller values produce greater simplification. Default value is \emph{0.1}.
 #'
 #' @details A full list of available maps is provided below. \emph{XX} specifies the scale, and must be substituted with 10 (1:10m), 50 (1:50m) or 110 (1:110m). The values in square parentheses indicate the scale(s) a map is available in.
 #'
@@ -136,12 +127,9 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
                        local_path = '.',
                        output_dir = '.',
                        output_filename = NULL,
-                       crs = '+init=epsg:4326 +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0',
-                       box_long = c(-180, 180),
-                       box_lat = c(-90, 90),
+                       crs = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0',
                        simplify = FALSE,
-                       retain = 0.1,
-                       topology = TRUE) {
+                       retain = 0.1) {
 
     ############################################################
     #                                                          #
@@ -149,7 +137,7 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
     #                                                          #
     ############################################################
     # Set download url---------------------------------------------------------
-    url <- paste0('http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/',
+    url <- paste0('https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/',
                   ifelse(stringr::str_detect(input_filename, '110m'),
                          yes = '110m',
                          no = ifelse(stringr::str_detect(input_filename, '50m'),
@@ -177,6 +165,7 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
     ## Extract temp file into output directory
     unzip(file, exdir = temp_dir)
 
+
     ############################################################
     #                                                          #
     #                 Convert file to geojson                  #
@@ -201,24 +190,18 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
                           '.geojson')
 
     # Read in the shape file---------------------------------------------------
-    shape <- rgdal::readOGR(dsn = temp_dir,
-                            layer = input_filename)
+    shape <- sf::read_sf(dsn = temp_dir,
+                         layer = input_filename)
 
     # Set coordinate reference system-------------------------------------
-    shape_1 <- sp::spTransform(x = shape,
-                               CRSobj = sp::CRS(crs))
-
-    # Set bounds----------------------------------------------------------
-    box <- raster::extent(c(x = box_long,
-                            y = box_lat))
-    shape_1b <- raster::crop(shape_1,
-                             box)
+    shape_1 <- sf::st_transform(x = shape,
+                                sf::st_crs(crs))
 
     # Simplify------------------------------------------------------------
     if(simplify == TRUE) {
-        shape_2 <- rmapshaper::ms_simplify(input = shape_1b,
-                                           keep = tolerance,
-                                           method = 'dp')
+        shape_2 <- rmapshaper::ms_simplify(shape_1,
+                                           keep = retain)
+
     } else {
         shape_2 <- shape_1
     }
@@ -229,4 +212,7 @@ ne2geojson <- function(input_filename = 'ne_50m_admin_0_countries',
     # Transform to GeoJSON and write to file------------------------------
     geojsonio::geojson_write(input = shape_3,
                              file = file_name_2)
+
+    # Remove downloaded shapefile------------------------------------------
+    file.remove(file)
 }
